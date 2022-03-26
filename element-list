@@ -1,0 +1,5 @@
+com.watchparty.userservice
+com.watchparty.userservice.api
+com.watchparty.userservice.domain
+com.watchparty.userservice.repository
+com.watchparty.userservice.service

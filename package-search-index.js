@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.watchparty.userservice"},{"l":"com.watchparty.userservice.api"},{"l":"com.watchparty.userservice.domain"},{"l":"com.watchparty.userservice.repository"},{"l":"com.watchparty.userservice.service"}]
