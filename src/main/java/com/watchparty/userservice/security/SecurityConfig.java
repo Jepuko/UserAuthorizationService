@@ -18,7 +18,7 @@ import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
-@Configuration @EnableWebSecurity @RequiredArgsConstructor
+@Configuration@EnableWebSecurity@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailsService userDetailsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
