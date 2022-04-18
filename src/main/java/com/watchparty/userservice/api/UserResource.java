@@ -10,6 +10,7 @@ import com.watchparty.userservice.domain.User;
 import com.watchparty.userservice.service.UserService;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -26,6 +27,7 @@ import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class UserResource {
@@ -33,7 +35,9 @@ public class UserResource {
 
     @GetMapping("/users")
     public ResponseEntity<List<User>>getUsers() {
-        return ResponseEntity.ok().body(userService.getUsers());
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("Access-Control-Allow-Origin", "*");
+        return ResponseEntity.ok().headers(responseHeaders).body(userService.getUsers());
     }
 
     @PostMapping("/user/save")

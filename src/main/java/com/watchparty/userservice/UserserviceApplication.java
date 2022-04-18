@@ -26,15 +26,23 @@ public class UserserviceApplication {
 		return new BCryptPasswordEncoder();
 	}
 
+	/*
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOriginPatterns("*");
+				registry.addMapping("/**")
+						.allowedOrigins("*")
+						.allowedMethods("*") //or allow all as you like
+						.allowedHeaders("*")
+						.exposedHeaders("*")
+						.allowCredentials(false).maxAge(3600);
 			}
 		};
 	}
+	*/
+
 
 	@Bean
 	CommandLineRunner run(UserService userService) {
