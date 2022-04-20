@@ -40,6 +40,25 @@ public class UserResource {
         return ResponseEntity.ok().headers(responseHeaders).body(userService.getUsers());
     }
 
+    @GetMapping("/user/verifyToken")
+    public Boolean verifyToken(HttpServletRequest request){
+        System.out.println("Request received");
+        String authorizationHeader = request.getHeader(AUTHORIZATION);
+        if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            String token = authorizationHeader.substring("Bearer ".length());
+            Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+            JWTVerifier verifier = JWT.require(algorithm).build();
+            DecodedJWT decodedJWT = verifier.verify(token);
+            String username = (decodedJWT.getSubject());
+            System.out.println(username);
+            String[] roles = decodedJWT.getClaim("roles").asArray(String.class);
+            boolean contains = Arrays.stream(roles).anyMatch("ROLE_USER"::equals);
+            return contains;
+        }else{
+            return false;
+        }
+    }
+
     @PostMapping("/user/save")
     public ResponseEntity<User>saveUser(@RequestBody User user) {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());
@@ -71,7 +90,7 @@ public class UserResource {
                 User user = userService.getUser(username);
                 String access_token = JWT.create()
                         .withSubject(user.getUsername())
-                        .withExpiresAt(new Date(System.currentTimeMillis() + 30 * 60 * 1000))
+                        .withExpiresAt(new Date(System.currentTimeMillis() + 3 * 24 * 60 * 60 * 1000))  // valid for 3 days
                         .withIssuer(request.getRequestURI().toString())
                         .withClaim("roles", user.getRoles().stream().map(Role::getName).collect(Collectors.toList()))
                         .sign(algorithm);

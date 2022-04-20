@@ -56,6 +56,8 @@ public class UserserviceApplication {
 			userService.saveUser(new User(null, "Will Smith", "will", "1234", new ArrayList<>()));
 			userService.saveUser(new User(null, "Jim Carry", "jim", "1234", new ArrayList<>()));
 			userService.saveUser(new User(null, "Ronnie Coleman", "ronnie", "1234", new ArrayList<>()));
+			userService.saveUser(new User(null, "Koushik kannepally", "koushik", "1234", new ArrayList<>()));
+			userService.saveUser(new User(null, "Jessek", "jessek", "1234", new ArrayList<>()));
 
 			userService.addRoleToUser("john", "ROLE_USER");
 			userService.addRoleToUser("john", "ROLE_MANAGER");
@@ -64,6 +66,8 @@ public class UserserviceApplication {
 			userService.addRoleToUser("ronnie", "ROLE_SUPER_ADMIN");
 			userService.addRoleToUser("ronnie", "ROLE_ADMIN");
 			userService.addRoleToUser("ronnie", "ROLE_USER");
+			userService.addRoleToUser("koushik", "ROLE_USER");
+			userService.addRoleToUser("jessek", "ROLE_ADMIN");
 
 		};
 	}
